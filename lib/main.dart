@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:id_379/application.dart';
 
 void main() {
   runZonedGuarded(
@@ -12,7 +13,7 @@ void main() {
         ScreenUtilInit(
           designSize: const Size(375, 812),
           builder: (_, child) {
-            return const MyApp();
+            return const Application();
           },
         ),
       );
@@ -22,21 +23,4 @@ void main() {
       print(stack);
     },
   );
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-        fontFamily: 'Montserrat',
-      ),
-      home: const Scaffold(),
-    );
-  }
 }
