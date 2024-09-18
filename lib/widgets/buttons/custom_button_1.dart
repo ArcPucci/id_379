@@ -9,18 +9,21 @@ class CustomButton1 extends StatelessWidget {
     this.onTap,
     this.height,
     required this.text,
-    this.width,
+    this.width, this.overlayColor,
   });
 
   final double? width;
   final double? height;
+  final Color? overlayColor;
   final VoidCallback? onTap;
   final String text;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(24),
+      overlayColor: WidgetStatePropertyAll(overlayColor ?? Colors.transparent),
       child: Container(
         width: width ?? 127.w,
         height: height ?? 48.h,

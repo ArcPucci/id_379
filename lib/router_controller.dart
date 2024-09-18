@@ -36,6 +36,32 @@ class RouterController {
             pageBuilder: (_, state) => buildPageWithDefaultTransition(
               context: _,
               state: state,
+              child: const HomeScreen(),
+            ),
+          ),
+          GoRoute(
+            path: '/pre_game',
+            pageBuilder: (_, state) => buildPageWithDefaultTransition(
+              context: _,
+              state: state,
+              child: PreGameScreen(),
+            ),
+            routes: [
+              GoRoute(
+                path: 'game',
+                pageBuilder: (_, state) => buildPageWithDefaultTransition(
+                  context: _,
+                  state: state,
+                  child: GameScreen(),
+                ),
+              ),
+            ],
+          ),
+          GoRoute(
+            path: '/settings',
+            pageBuilder: (_, state) => buildPageWithDefaultTransition(
+              context: _,
+              state: state,
               child: const SettingsScreen(),
             ),
           ),

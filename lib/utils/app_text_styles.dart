@@ -52,6 +52,13 @@ class AppTextStyles {
     letterSpacing: -0.4,
   );
 
+  static final TextStyle medium18 = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 18.r,
+    height: 22 / 18,
+    color: Colors.white,
+  );
+
   static final TextStyle medium8 = TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 8.r,

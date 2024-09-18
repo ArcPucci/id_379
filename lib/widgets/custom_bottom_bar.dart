@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:go_router/go_router.dart';
 import 'package:id_379/utils/utils.dart';
 
 class CustomBottomBar extends StatefulWidget {
@@ -25,7 +26,7 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
       title: 'Game',
       icon: 'assets/png/icons/game0.png',
       enabledIcon: 'assets/png/icons/game1.png',
-      path: '/game',
+      path: '/pre_game',
     ),
     _BottomBarItem(
       id: 0,
@@ -50,22 +51,25 @@ class _CustomBottomBarState extends State<CustomBottomBar> {
           (index) {
             final item = list[index];
             final selected = index == _index;
-            return SizedBox(
-              width: 34.w,
-              height: 38.h,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Image.asset(
-                    selected ? item.enabledIcon : item.icon,
-                    width: 24.w,
-                    height: 24.h,
-                  ),
-                  FittedBox(
-                    fit: BoxFit.none,
-                    child: Text(item.title, style: AppTextStyles.medium8),
-                  ),
-                ],
+            return GestureDetector(
+              onTap: () => context.go(item.path),
+              child: SizedBox(
+                width: 34.w,
+                height: 38.h,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Image.asset(
+                      selected ? item.enabledIcon : item.icon,
+                      width: 24.w,
+                      height: 24.h,
+                    ),
+                    FittedBox(
+                      fit: BoxFit.none,
+                      child: Text(item.title, style: AppTextStyles.medium8),
+                    ),
+                  ],
+                ),
               ),
             );
           },
