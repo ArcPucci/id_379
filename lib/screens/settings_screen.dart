@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:id_379/main.dart';
 import 'package:id_379/screens/screens.dart';
 import 'package:id_379/utils/utils.dart';
 import 'package:id_379/widgets/widgets.dart';
@@ -27,12 +28,32 @@ class SettingsScreen extends StatelessWidget {
         Gap(12.h),
         const CustomButton2(text: 'Terms of Use'),
         Gap(12.h),
-        CustomButton2(
-          text: 'Subscription management',
-          onTap: () => onTapPremium(context),
+        ValueListenableBuilder(
+          valueListenable: premium,
+          builder: (_, value, child) {
+            if (value) return SizedBox();
+            return Column(
+              children: [
+                CustomButton2(
+                  text: 'Subscription management',
+                  onTap: () => onTapPremium(context),
+                ),
+                Gap(12.h),
+              ],
+            );
+          },
         ),
-        Gap(12.h),
-        const CustomButton2(text: 'Notification', hasSwitcher: true),
+        ValueListenableBuilder(
+          valueListenable: notification,
+          builder: (BuildContext context, bool value, Widget? child) {
+            return CustomButton2(
+              text: 'Notification',
+              hasSwitcher: true,
+              enabled: value,
+              onChanged: (enabled) => enableNotification(),
+            );
+          },
+        ),
       ],
     );
   }

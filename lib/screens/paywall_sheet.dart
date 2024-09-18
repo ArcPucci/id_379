@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:id_379/main.dart';
 import 'package:id_379/utils/utils.dart';
 import 'package:id_379/widgets/buttons/custom_button_1.dart';
 
@@ -68,9 +69,13 @@ class PaywallSheet extends StatelessWidget {
                     CustomButton1(
                       width: 137.w,
                       text: 'Get for \$0.49',
+                      onTap: () => onBuyPremium(context),
                     ),
                     Gap(24.h),
-                    Text('Restore', style: AppTextStyles.medium16),
+                    GestureDetector(
+                      onTap: () => onBuyPremium(context),
+                      child: Text('Restore', style: AppTextStyles.medium16),
+                    ),
                     Gap(16.h),
                   ],
                 ),
@@ -80,5 +85,10 @@ class PaywallSheet extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void onBuyPremium(BuildContext context) {
+    Navigator.of(context).pop();
+    buyPremium();
   }
 }

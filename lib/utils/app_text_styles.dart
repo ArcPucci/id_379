@@ -23,10 +23,24 @@ class AppTextStyles {
     color: Colors.white,
   );
 
+  static final TextStyle bold24 = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 24.r,
+    height: 29 / 24,
+    color: Colors.white,
+  );
+
   static final TextStyle bold16 = TextStyle(
     fontWeight: FontWeight.w700,
     fontSize: 16.r,
     height: 19 / 16,
+    color: Colors.white,
+  );
+
+  static final TextStyle bold60 = TextStyle(
+    fontWeight: FontWeight.w700,
+    fontSize: 60.r,
+    height: 73 / 60,
     color: Colors.white,
   );
 

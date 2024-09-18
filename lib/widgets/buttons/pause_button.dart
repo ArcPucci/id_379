@@ -6,12 +6,12 @@ class PauseButton extends StatelessWidget {
   const PauseButton({super.key, required this.paused, this.onTap});
 
   final bool paused;
-  final void Function(bool)? onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => onTap?.call(!paused),
+      onTap: onTap,
       child: Container(
         width: 123.w,
         height: 40.h,

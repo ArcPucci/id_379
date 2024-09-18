@@ -24,7 +24,24 @@ CustomTransitionPage buildPageWithDefaultTransition({
 
 class RouterController {
   final router = GoRouter(
+    initialLocation: '/splash',
     routes: [
+      GoRoute(
+        path: '/splash',
+        pageBuilder: (_, state) => buildPageWithDefaultTransition(
+          context: _,
+          state: state,
+          child: SplashScreen(),
+        ),
+      ),
+      GoRoute(
+        path: '/welcome',
+        pageBuilder: (_, state) => buildPageWithDefaultTransition(
+          context: _,
+          state: state,
+          child: WelcomeScreen(),
+        ),
+      ),
       ShellRoute(
         builder: (_, state, child) => NavigationScreen(
           path: state.fullPath!,

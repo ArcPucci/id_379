@@ -162,7 +162,8 @@ Gasing, Sarawak, Malaysia. This hand-carved wooden top is made of a dense hardwo
           width: 375.w,
           height: 375.h,
           image: const AssetImage("assets/gif/anim.gif"),
-          controller: _controller, // if duration and fps is null, original gif fps will be used.
+          controller: _controller,
+          // if duration and fps is null, original gif fps will be used.
           autostart: Autostart.loop,
           placeholder: (context) => const Text('Loading...'),
           onFetchCompleted: () {

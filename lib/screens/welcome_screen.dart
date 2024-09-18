@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
+import 'package:go_router/go_router.dart';
 import 'package:id_379/utils/utils.dart';
 import 'package:id_379/widgets/widgets.dart';
 
@@ -31,7 +32,7 @@ class WelcomeScreen extends StatelessWidget {
               ),
             ),
             Gap(28.h),
-            const CustomButton1(text: "Start"),
+            CustomButton1(text: "Start", onTap: () => context.go('/')),
             const Spacer(),
             SizedBox(
               width: 343.w,

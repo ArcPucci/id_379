@@ -28,6 +28,7 @@ class NavigationScreen extends StatelessWidget {
               : null,
         ),
         child: SafeArea(
+          top: !hasGradient,
           child: Stack(
             children: [
               Positioned.fill(bottom: 64.h, child: child),
