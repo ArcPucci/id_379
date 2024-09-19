@@ -39,8 +39,16 @@ class _GameScreenState extends State<GameScreen> {
 
   bool paused = false;
 
+  final images = [
+    'assets/png/toy1.png',
+    'assets/png/toy2.png',
+    'assets/png/toy3.png',
+    'assets/png/toy4.png',
+  ];
+
   @override
   void initState() {
+    images.shuffle();
     super.initState();
     onInit();
   }
@@ -49,12 +57,12 @@ class _GameScreenState extends State<GameScreen> {
     onDebounce1();
     onDebounce2();
     temp = 0;
-    onStart();
+    onStart(false);
   }
 
-  void onDebounce1() {
+  void onDebounce1({bool? cont}) {
     if (paused) return;
-    if (_count1 < 4) _count1++;
+    if (_count1 < 4 && !(cont ?? false)) _count1++;
     _falling1 = false;
     if (_debounce1?.isActive ?? false) _debounce1?.cancel();
     _debounce1 = Timer(
@@ -66,9 +74,9 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  void onDebounce2() {
+  void onDebounce2({bool? cont}) {
     if (paused) return;
-    if (_count2 < 4) _count2++;
+    if (_count2 < 4 && !(cont ?? false)) _count2++;
     _falling2 = false;
     if (_debounce2?.isActive ?? false) _debounce2?.cancel();
     _debounce2 = Timer(
@@ -80,7 +88,12 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  void onStart() {
+  void onStart(bool cont) {
+    if (cont) {
+      onDebounce1(cont: true);
+      onDebounce2(cont: true);
+    }
+
     _timer = Timer.periodic(
       Duration(milliseconds: 10),
       (timer) {
@@ -146,7 +159,7 @@ class _GameScreenState extends State<GameScreen> {
     paused = !paused;
 
     if (!paused) {
-      onStart();
+      onStart(true);
       return;
     }
 
@@ -215,7 +228,7 @@ class _GameScreenState extends State<GameScreen> {
                         child: Transform.rotate(
                           angle: _angle1,
                           child: Image.asset(
-                            'assets/png/toy1.png',
+                            images[0],
                             width: 124.w,
                             height: 124.h,
                           ),
@@ -246,7 +259,7 @@ class _GameScreenState extends State<GameScreen> {
                         child: Transform.rotate(
                           angle: _angle2,
                           child: Image.asset(
-                            'assets/png/toy1.png',
+                            images[1],
                             width: 124.w,
                             height: 124.h,
                           ),

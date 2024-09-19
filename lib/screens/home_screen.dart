@@ -14,12 +14,22 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   late final GifController _controller;
+  final controller = ScrollController();
+  final pageController = PageController();
+
   bool _tapped = false;
 
   @override
   void initState() {
     super.initState();
     _controller = GifController(vsync: this);
+    controller.addListener(() {
+      if (controller.offset - controller.position.maxScrollExtent < 100) return;
+      pageController.nextPage(
+        duration: Duration(milliseconds: 300),
+        curve: Curves.easeInOut,
+      );
+    });
   }
 
   @override
@@ -98,6 +108,7 @@ Gasing, Sarawak, Malaysia. This hand-carved wooden top is made of a dense hardwo
     return SizedBox(
       width: 375.w,
       child: PageView(
+        controller: pageController,
         scrollDirection: Axis.vertical,
         children: [
           ...List.generate(
@@ -132,6 +143,7 @@ Gasing, Sarawak, Malaysia. This hand-carved wooden top is made of a dense hardwo
         Gap(32.h),
         Expanded(
           child: SingleChildScrollView(
+            controller: controller,
             scrollDirection: Axis.vertical,
             padding: EdgeInsets.symmetric(horizontal: 18.w),
             child: Text(
