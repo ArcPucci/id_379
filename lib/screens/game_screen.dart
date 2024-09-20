@@ -33,6 +33,9 @@ class _GameScreenState extends State<GameScreen> {
   int _count1 = 2;
   int _count2 = 2;
 
+  int _temp1 = 0;
+  int _temp2 = 0;
+
   double _d = 0.003;
 
   int temp = 0;
@@ -54,8 +57,8 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void onInit() {
-    onDebounce1();
-    onDebounce2();
+    onDebounce1(cont: true);
+    onDebounce2(cont: true);
     temp = 0;
     onStart(false);
   }
@@ -63,6 +66,7 @@ class _GameScreenState extends State<GameScreen> {
   void onDebounce1({bool? cont}) {
     if (paused) return;
     if (_count1 < 4 && !(cont ?? false)) _count1++;
+
     _falling1 = false;
     if (_debounce1?.isActive ?? false) _debounce1?.cancel();
     _debounce1 = Timer(
@@ -77,6 +81,7 @@ class _GameScreenState extends State<GameScreen> {
   void onDebounce2({bool? cont}) {
     if (paused) return;
     if (_count2 < 4 && !(cont ?? false)) _count2++;
+
     _falling2 = false;
     if (_debounce2?.isActive ?? false) _debounce2?.cancel();
     _debounce2 = Timer(
@@ -159,6 +164,19 @@ class _GameScreenState extends State<GameScreen> {
     paused = !paused;
 
     if (!paused) {
+      _temp1++;
+      _temp2++;
+
+      if (_temp1 >= 2 && !_falling1) {
+        _temp1 = 0;
+        _count1--;
+      }
+
+      if (_temp2 >= 2 && !_falling2) {
+        _temp2 = 0;
+        _count2--;
+      }
+
       onStart(true);
       return;
     }
